@@ -1,4 +1,3 @@
-//your JS code here. If required.
 document.addEventListener('DOMContentLoaded', () => {
     const images = ['img1', 'img2', 'img3', 'img4', 'img5'];
     const imageContainer = document.getElementById('image-container');
@@ -29,10 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const repeatImage = images[Math.floor(Math.random() * images.length)];
         const shuffledImages = shuffle([...images, repeatImage]);
 
-        // Create and append image elements
+        // Create and append image elements with data-ns-test attributes
         shuffledImages.forEach((className, index) => {
             const img = document.createElement('img');
             img.className = className;
+            img.setAttribute('data-ns-test', className); // Set the data-ns-test attribute
             img.addEventListener('click', () => selectImage(img, className));
             imageContainer.appendChild(img);
         });
