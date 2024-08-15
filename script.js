@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const images = ['img1', 'img2', 'img3', 'img4', 'img5'];
+    const images = [
+        { className: 'img1', src: 'path/to/image1.jpg', alt: 'Image 1' },
+        { className: 'img2', src: 'path/to/image2.jpg', alt: 'Image 2' },
+        { className: 'img3', src: 'path/to/image3.jpg', alt: 'Image 3' },
+        { className: 'img4', src: 'path/to/image4.jpg', alt: 'Image 4' },
+        { className: 'img5', src: 'path/to/image5.jpg', alt: 'Image 5' }
+    ];
     const imageContainer = document.getElementById('image-container');
     const resetButton = document.getElementById('reset');
     const verifyButton = document.getElementById('verify');
@@ -28,10 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const repeatImage = images[Math.floor(Math.random() * images.length)];
         const shuffledImages = shuffle([...images, repeatImage]);
 
-        // Create and append image elements with data-ns-test attributes
-        shuffledImages.forEach((className, index) => {
+        // Create and append image elements with src and alt attributes
+        shuffledImages.forEach(({ className, src, alt }) => {
             const img = document.createElement('img');
             img.className = className;
+            img.src = src; // Set the src attribute
+            img.alt = alt; // Set the alt attribute
             img.setAttribute('data-ns-test', className); // Set the data-ns-test attribute
             img.addEventListener('click', () => selectImage(img, className));
             imageContainer.appendChild(img);
